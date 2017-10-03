@@ -3,16 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Pais;
-use app\models\PaisSearch;
+use app\models\Autor;
+use app\models\AutorSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * PaisController implements the CRUD actions for Pais model.
+ * AutorController implements the CRUD actions for Autor model.
  */
-class PaisController extends Controller
+class AutorController extends Controller
 {
     /**
      * @inheritdoc
@@ -30,12 +30,12 @@ class PaisController extends Controller
     }
 
     /**
-     * Lists all Pais models.
+     * Lists all Autor models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new PaisSearch();
+        $searchModel = new AutorSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class PaisController extends Controller
     }
 
     /**
-     * Displays a single Pais model.
+     * Displays a single Autor model.
      * @param integer $id
      * @return mixed
      */
@@ -57,13 +57,13 @@ class PaisController extends Controller
     }
 
     /**
-     * Creates a new Pais model.
+     * Creates a new Autor model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Pais();
+        $model = new Autor();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -75,7 +75,7 @@ class PaisController extends Controller
     }
 
     /**
-     * Updates an existing Pais model.
+     * Updates an existing Autor model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -94,7 +94,7 @@ class PaisController extends Controller
     }
 
     /**
-     * Deletes an existing Pais model.
+     * Deletes an existing Autor model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -107,15 +107,15 @@ class PaisController extends Controller
     }
 
     /**
-     * Finds the Pais model based on its primary key value.
+     * Finds the Autor model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Pais the loaded model
+     * @return Autor the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Pais::findOne($id)) !== null) {
+        if (($model = Autor::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

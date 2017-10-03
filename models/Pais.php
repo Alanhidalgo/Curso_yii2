@@ -10,6 +10,8 @@ use Yii;
  * @property integer $id
  * @property string $nombre_pais
  * @property string $estado
+ *
+ * @property Autor $autor
  */
 class Pais extends \yii\db\ActiveRecord
 {
@@ -29,8 +31,6 @@ class Pais extends \yii\db\ActiveRecord
         return [
             [['id', 'nombre_pais', 'estado'], 'required'],
             [['id'], 'integer'],
-            [['nombre_pais', 'estado'], 'string'],
-            [['nombre_pais', 'estado'], 'unique', 'messeage' => 'Ya se ha registrado ese pais'],
             [['nombre_pais', 'estado'], 'string', 'max' => 255],
         ];
     }
@@ -45,5 +45,13 @@ class Pais extends \yii\db\ActiveRecord
             'nombre_pais' => 'Nombre Pais',
             'estado' => 'Estado',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAutor()
+    {
+        return $this->hasOne(Autor::className(), ['id' => 'id']);
     }
 }

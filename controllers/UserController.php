@@ -28,8 +28,7 @@ class UserController extends Controller
             ],
         ];
     }
-
-    /**
+     /**
      * Lists all User models.
      * @return mixed
      */
@@ -112,7 +111,29 @@ class UserController extends Controller
      * @param integer $id
      * @return User the loaded model
      * @throws NotFoundHttpException if the model cannot be found
+
+     /*
+     * Action estado en el user
      */
+
+     public function actionEstado($id)
+     {
+         $usuario = $this->findModel($id);
+
+         if ( $usuario-> status==0) {
+             $usuario-> status==1;
+         }
+         else {
+             $usuario-> status==0;
+         }
+
+         $usuario->update();
+         return $this->redirect(['index']);
+     }
+
+
+     
+     
     protected function findModel($id)
     {
         if (($model = User::findOne($id)) !== null) {

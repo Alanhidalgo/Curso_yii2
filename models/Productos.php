@@ -57,6 +57,6 @@ class Productos extends \yii\db\ActiveRecord
      */
     public function getId0()
     {
-        return $this->hasOne(User::className(), ['id' => 'id']);
+        return $this->hasOne(User::className(), ['id' => 'id_user']);
     }
 }

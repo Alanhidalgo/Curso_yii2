@@ -30,10 +30,62 @@ $this->params['breadcrumbs'][] = $this->title;
             //'password_hash',
             'email:email',
              'status',
-             'created_at',
-             'updated_at',
+             //'created_at',
+             //'updated_at',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+            'template' => '{view} {update} {delete} {estado}',
+            'buttons' => [
+                /*'update' => function($url, $model){
+                    return Html::a('<span class="glyphicon glyphicon-pencil"></span>',
+                    $url,
+                    [
+                        'title' => 'Actualizar',
+                    ]
+                    
+                    
+                    );
+                },*/
+
+                    'estado' => function($url, $model){
+                        if ( $model->status == 1 ) {
+                            return Html::a('<span class="glyphicon glyphicon-minus-sign"></span>',
+                            $url,
+                            [
+                                'title' => 'Desactivar estado',
+                            ]
+                            
+                            );
+                        } else {
+                            return Html::a('<span class="glyphicon glyphicon-plus-sign"></span>',
+                            $url,
+                            [
+                                'title' => 'Activar estado',
+                            ]
+                            
+                            );
+                        
+                        }
+                    }
+                ],
+                
+                'urlCreator' => function($action, $model, $key, $index){
+                    if ($action== 'estado') {
+                        return yii\helpers\Url::to(['user/estado', 'id' => $key]);
+                    }
+                    elseif ($action== 'view') {
+                        return yii\helpers\Url::to(['user/view', 'id' => $key]);
+                    }
+                    elseif ($action== 'delete') {
+                        return yii\helpers\Url::to(['user/delete', 'id' => $key]);
+                    }
+                    elseif ($action== 'update') {
+                        return yii\helpers\Url::to(['user/update', 'id' => $key]);
+                    }
+
+                }
+        
+            ],
         ],
     ]); ?>
 </div>

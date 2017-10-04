@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use kartik\alert\AlertBlock;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ProductosSearch */
@@ -9,6 +10,14 @@ use yii\grid\GridView;
 
 $this->title = 'Productos';
 $this->params['breadcrumbs'][] = $this->title;
+?>
+
+<?php echo AlertBlock::widget([
+        'type' => AlertBlock::TYPE_ALERT,
+        'useSessionFlash' => true,
+        'delay' => 5000,
+    ]);
+
 ?>
 <div class="productos-index">
 
@@ -31,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'id_user',
             //'id0.username',
 
-            //-- SE AGREGO UN NUEVO CAMPO EN PRODUCTOS/INDEX Se ve el nombre al que le pertecene el producto
+            //-- SE AGREGO UN NUEVO CAMPO EN PRODUCTOS/INDEX Se ve el nombre al que le pertecene el producto---/////
             [
                 'attribute' =>'id_user',
                 'value' => 'id0.username',

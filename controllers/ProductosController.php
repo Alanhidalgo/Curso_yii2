@@ -65,8 +65,17 @@ class ProductosController extends Controller
     {
         $model = new Productos();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+
+            if( $model->save() ){
+                Yii::$app->session->setFlash("success","Registro guardado");
+            }
+                else
+                {
+                    Yii::$app->session->setFlash("error","Registro NO guardado");
+                }
+
+            return $this->redirect(['index']);
         } else {
             return $this->render('create', [
                 'model' => $model,

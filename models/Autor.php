@@ -8,11 +8,8 @@ use Yii;
  * This is the model class for table "autor".
  *
  * @property integer $id
- * @property string $Nombre
- * @property string $pais_id
- * @property string $Created_By
- *
- * @property Pais $id0
+ * @property string $nombre
+ * @property integer $pais_id
  */
 class Autor extends \yii\db\ActiveRecord
 {
@@ -30,9 +27,9 @@ class Autor extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Nombre', 'pais_id', 'Created_By'], 'required'],
-            [['Nombre', 'pais_id', 'Created_By'], 'string', 'max' => 100],
-            [['id'], 'exist', 'skipOnError' => true, 'targetClass' => Pais::className(), 'targetAttribute' => ['id' => 'id']],
+            [['id', 'nombre', 'pais_id'], 'required'],
+            [['id', 'pais_id'], 'integer'],
+            [['nombre'], 'string', 'max' => 100],
         ];
     }
 
@@ -43,17 +40,8 @@ class Autor extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'Nombre' => 'Nombre',
+            'nombre' => 'Nombre',
             'pais_id' => 'Pais ID',
-            'Created_By' => 'Created  By',
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getId0()
-    {
-        return $this->hasOne(Pais::className(), ['id' => 'id']);
     }
 }

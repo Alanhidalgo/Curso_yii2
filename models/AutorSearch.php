@@ -18,8 +18,8 @@ class AutorSearch extends Autor
     public function rules()
     {
         return [
-            [['id'], 'integer'],
-            [['Nombre', 'pais_id', 'Created_By'], 'safe'],
+            [['id', 'pais_id'], 'integer'],
+            [['nombre'], 'safe'],
         ];
     }
 
@@ -60,11 +60,10 @@ class AutorSearch extends Autor
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'pais_id' => $this->pais_id,
         ]);
 
-        $query->andFilterWhere(['like', 'Nombre', $this->Nombre])
-            ->andFilterWhere(['like', 'pais_id', $this->pais_id])
-            ->andFilterWhere(['like', 'Created_By', $this->Created_By]);
+        $query->andFilterWhere(['like', 'nombre', $this->nombre]);
 
         return $dataProvider;
     }

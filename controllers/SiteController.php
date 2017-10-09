@@ -11,6 +11,8 @@ use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\SignupForm;
 use app\models\User;
+use app\models\Autor;
+use yii\data\Pagination;
 
 class SiteController extends Controller
 {
@@ -147,5 +149,26 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+
+    public function actionAutores()
+    {
+        $query = Autor::find();
+
+        $pagination = new Pagination([
+           'defaultPageSize' => 3,
+            'totalCount' => $query->count(),
+        ]);
+
+        $autores = $query->orderBy('id desc')
+        ->offset($pagination->offset)
+        ->limit($pagination->limit)
+        ->all();
+
+        return $this->render('autores',
+        [
+            'autores' => $autores,
+            'pagination' => $pagination,
+        ]);
     }
 }
